@@ -1,10 +1,10 @@
 public class Reserva {
     String cliente;
-    int horario;
-    int data;
-    int espaco;
+    String horario;
+    String data;
+    String espaco;
 
-    public Reserva(String cliente, int horario, int data, int espaco){
+    public Reserva(String cliente, String  horario, String data, String espaco){
         this.cliente = cliente;
         this.horario = horario;
         this.data = data;

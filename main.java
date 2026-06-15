@@ -11,9 +11,9 @@ public class Main {
         while (true) {
 
             System.out.println(
-                    "1-Criar reserva\n" +
+                    "\n1-Criar reserva\n" +
                     "2-Ver reservas\n" +
-                    "3-Cancelar reservas\n" +
+                    "3-Cancelar reserva\n" +
                     "4-Sair");
 
             String painel = entrada.nextLine();
@@ -22,31 +22,35 @@ public class Main {
 
                 case "1":
 
-                    System.out.println("Nome:");
+                    System.out.print("Nome do cliente: ");
                     String nome = entrada.nextLine();
 
-                    System.out.println("Horário:");
-                    int horario = entrada.nextInt();
+                    System.out.print("Horário: ");
+                    String horario = entrada.nextLine();
 
-                    System.out.println("Data:");
-                    int data = entrada.nextInt();
+                    System.out.print("Data: ");
+                    String data = entrada.nextLine();
 
-                    System.out.println("Espaço:");
-                    int espaco = entrada.nextInt();
-
-                    entrada.nextLine(); // limpar buffer
+                    System.out.print("Espaço: ");
+                    String espaco = entrada.nextLine();
 
                     boolean ocupado = false;
 
                     for (Reserva r : reservas) {
-                        if (r.horario == horario && r.data == data) {
+
+                        if (r.horario.equals(horario)
+                                && r.data.equals(data)
+                                && r.espaco.equals(espaco)) {
+
                             ocupado = true;
                             break;
                         }
                     }
 
                     if (ocupado) {
-                        System.out.println("Horário já reservado.");
+
+                        System.out.println("Este espaço já está reservado nesse horário.");
+
                     } else {
 
                         Reserva novaReserva = new Reserva(
@@ -57,7 +61,7 @@ public class Main {
 
                         reservas.add(novaReserva);
 
-                        System.out.println("Reserva criada com sucesso.");
+                        System.out.println("Reserva criada com sucesso!");
                     }
 
                     break;
@@ -65,16 +69,21 @@ public class Main {
                 case "2":
 
                     if (reservas.isEmpty()) {
+
                         System.out.println("Nenhuma reserva cadastrada.");
+
                     } else {
 
+                        System.out.println("\n===== RESERVAS =====");
+
                         for (Reserva r : reservas) {
+
                             System.out.println(
                                     "Cliente: " + r.cliente +
                                     "\nHorário: " + r.horario +
                                     "\nData: " + r.data +
                                     "\nEspaço: " + r.espaco +
-                                    "\n");
+                                    "\n------------------");
                         }
                     }
 
@@ -82,7 +91,7 @@ public class Main {
 
                 case "3":
 
-                    System.out.println("Digite o nome da reserva para cancelar:");
+                    System.out.print("Nome da reserva para cancelar: ");
                     String nomeCancelar = entrada.nextLine();
 
                     boolean removido = false;
@@ -94,12 +103,13 @@ public class Main {
                             reservas.remove(i);
                             removido = true;
 
-                            System.out.println("Reserva cancelada.");
+                            System.out.println("Reserva cancelada com sucesso!");
                             break;
                         }
                     }
 
                     if (!removido) {
+
                         System.out.println("Reserva não encontrada.");
                     }
 
